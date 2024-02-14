@@ -1,5 +1,6 @@
 const redux = require('redux')
 const createStore = redux.createStore
+const bindActionCreators = redux.bindActionCreators
 
 
 
@@ -52,11 +53,19 @@ console.log('Initial state', store.getState())
 const unsubscribe = store.subscribe(()=>console.log('updatedState',store.getState()))
 
 //allowing a dispatch for an action
-store.dispatch(order_cake())
-store.dispatch(order_cake())
-store.dispatch(order_cake())
-store.dispatch(restock_cake(4))
-store.dispatch(order_cake())
+// store.dispatch(order_cake())
+// store.dispatch(order_cake())
+// store.dispatch(order_cake())
+// store.dispatch(restock_cake(4))
+// store.dispatch(order_cake())
+
+const actions = bindActionCreators({order_cake,restock_cake}, store.dispatch)
+actions.order_cake()
+actions.order_cake()
+actions.order_cake()
+actions.order_cake()
+actions.restock_cake(6)
+
 
 
 unsubscribe()
